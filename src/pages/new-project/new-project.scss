@@ -1,0 +1,176 @@
+page-new-project {
+    .messages-page-navbar {
+        ion-title {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 0 80px 1px;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          z-index: -1;
+        }
+
+        .chat-picture {
+          width: 50px;
+          border-radius: 50%;
+          float: left;
+        }
+       
+        .chat-title {
+          line-height: 50px;
+          float: left;
+        }
+      }
+       
+      .messages-page-content {
+        direction: rtl;
+      }
+
+      .messages-page-content {
+        > .scroll-content {
+          margin: 42px -16px 42px !important;
+        }
+       
+        .day-wrapper .day-timestamp {
+          margin-left: calc(50% - 64px);
+          margin-right: calc(50% - 64px);
+          margin-bottom: 9px;
+          text-align: center;
+          line-height: 27px;
+          height: 27px;
+          border-radius: 3px;
+          color: gray;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+          background: #d9effa;
+        }
+       
+        .messages {
+          height: 100%;
+          background-image: url(../assets/chat-background.jpg);
+          background-color: #E0DAD6;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        .messages:after {
+          background-image: url(../assets/images/background.jpg);
+          background-position: top center;
+          background-image: url(../assets/images/background.jpg);
+          background-repeat: no-repeat;
+          background-size: cover;
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          opacity: .5;
+        }
+       
+        .message-wrapper {
+          margin-bottom: 9px;
+       
+          &::after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+        }
+       
+        .message {
+          display: inline-block;
+          position: relative;
+          max-width: 65vh;
+          border-radius: 7px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+       
+          &.message-mine {
+            padding: 0 .3em;
+            float: right;
+            // background-color: #DCF8C6;
+            background-color: #2f3f51;
+            color: #fff;
+       
+            &::before {
+              right: -11px;
+              background-image: url(../assets/message-mine.png)
+            }
+          }
+       
+          &.message-other {
+            padding: 0 .3em;
+            float: left;
+            background-color: #FFF;
+       
+            &::before {
+              left: -11px;
+              background-image: url(../assets/message-other.png)
+            }
+          }
+       
+          &.message-other::before, &.message-mine::before {
+            content: "";
+            position: absolute;
+            bottom: 3px;
+            width: 12px;
+            height: 19px;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+       
+          .message-content {
+            padding: 5px 7px;
+            word-wrap: break-word;
+       
+            &::after {
+              // content: " \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+              // display: block;
+            }
+          }
+       
+          .message-timestamp {
+            /* position: absolute; */
+            /* bottom: 2px; */
+            /* right: 7px; */
+            padding: 0 .5em .5em .5em;
+            font-size: 12px;
+            color: gray;
+          }
+        }
+      }
+
+      .messages-page-footer {
+        padding-right: 0;
+        direction: rtl;
+       
+        .message-editor {
+          // margin-right: 2px;
+          padding-right: 5px;
+          background: white;
+          border-radius: 3px;
+        }
+
+        textarea.text-input.text-input-md{
+          // background: red;
+          margin: 0px;
+          padding: 1em 5px;          
+        }
+       
+        .message-editor-button {
+          box-shadow: none;
+          width: 40px;
+          height: 40px;
+          font-size: 17px;
+          margin: auto;
+          color: #fff;
+          background: #2f3f51;
+          border-radius: 50%;
+        }
+
+        .send-icon {
+          transform: rotateY(180deg);
+        }
+      }
+}

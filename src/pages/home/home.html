@@ -1,14 +1,33 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
       Ionic Blank
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div class="header-container">
+    <div class="header">Bag Plot</div>
+  </div>
+  <div class="card-container">
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+              <ion-avatar item-end>
+                <div class="numberCircle">30</div>
+              </ion-avatar>
+              <button ion-button full (click)="onAllProjects()">כל הפרויקטים</button>
+          </ion-item>
+          <ion-item>
+            <ion-avatar item-end>
+              <!-- <div class="numberCircle">30</div> -->
+            </ion-avatar>
+            <button ion-button full (click)="onNewProject()">צור פרויקט חדש</button>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
