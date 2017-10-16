@@ -1,3 +1,5 @@
+import { ProjectItemProvider } from '../../providers/project-item/project-item';
+import { ItemProject } from '../../models/itemProject';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -7,8 +9,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'project-item.html',
 })
 export class ProjectItemPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public projectItem = new ItemProject();
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private projectItemProvider: ProjectItemProvider) {
+      this.projectItem = this.navParams.get('projectItem');
+      this.projectItemProvider.getProjectItemById(this.projectItem).subscribe(
+        (projectItemRes) => {
+          this.projectItem = projectItemRes;
+        });
   }
 
   ionViewDidLoad() {

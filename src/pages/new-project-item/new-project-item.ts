@@ -1,7 +1,7 @@
 import { ProjectItemProvider } from '../../providers/project-item/project-item';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import { ItemProject } from '../../models/itemProject';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -13,14 +13,17 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class NewProjectItemPage {
 
   public projectItem = new ItemProject();
+  private callbackOnDismiss;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public viewCtrl: ViewController,
     private projectItemProvider: ProjectItemProvider,
     public camera: Camera,
     public firebaseProvider: FirebaseProvider) {
       this.projectItem.project_id = this.navParams.get('project').id;
+      this.callbackOnDismiss = this.navParams.get('callback');
   }
 
   ionViewDidLoad() {
@@ -56,7 +59,7 @@ export class NewProjectItemPage {
     textarea.style.height     = '0';
 
     // limit size to 96 pixels (6 lines of text)
-    var scroll_height = textarea.scrollHeight;
+    var scroll_height = textarea.scrollHeight + 10;
     if(scroll_height > 96)
       scroll_height = 96;
 
@@ -70,7 +73,12 @@ export class NewProjectItemPage {
     this.projectItemProvider.createProjecrItem(this.projectItem).subscribe(
       (res) => {
         if(res.isSuccess) {
-          this.navCtrl.pop();
+          // this.navCtrl.pop();
+          this.projectItem = res;
+          this.callbackOnDismiss(this.projectItem).then(
+            () => {
+              this.viewCtrl.dismiss();
+            });
         }
       }
     );

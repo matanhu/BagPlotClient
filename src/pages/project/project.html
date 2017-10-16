@@ -57,7 +57,7 @@
     </div>
     <div class="project-items-content">
       <ion-list>
-        <button class="project-item-btn" ion-item (click)="test()" *ngFor="let item of project.itemsProject">
+        <button class="project-item-btn" ion-item (click)="onProjectItemClick(item)" *ngFor="let item of project.itemsProject">
           <ion-row>
             <ion-col col-10>
               <h3>{{item.project_item_name}}</h3>
