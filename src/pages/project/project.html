@@ -10,7 +10,7 @@
 <ion-content class="content">
   <div class="cover-container">
     <div class="conver-image-container">
-      <img [src]="project.image">
+      <img [src]="project.image" imageViewer>
     </div>
     <div class="cover-text-container">
       <div class="project-name">
@@ -24,28 +24,28 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-              <div>אנשי קשר</div>
-              <div>
-                  <span class="budget" (click)="onAddContact()">
-                    <ion-icon name="add"></ion-icon>
-                  </span>
-              </div>
+            <div>אנשי קשר</div>
+            <div>
+              <span class="budget" (click)="onAddContact()">
+                <ion-icon name="add"></ion-icon>
+              </span>
+            </div>
           </ion-col>
           <ion-col>
-              <div>אנשי קשר</div>
-              <div>
-                  <span class="budget" (click)="createDocx()">
-                    <ion-icon name="download"></ion-icon>
-                  </span>
-              </div>
+            <div>אנשי קשר</div>
+            <div>
+              <span class="budget" (click)="createDocx()">
+                <ion-icon name="download"></ion-icon>
+              </span>
+            </div>
           </ion-col>
           <ion-col>
-              <div>הוספת תוכן</div>
-              <div>
-                  <span class="budget" (click)="onAddProjectItem()">
-                      <ion-icon name="add"></ion-icon>
-                  </span>
-              </div>
+            <div>הוספת תוכן</div>
+            <div>
+              <span class="budget" (click)="onAddProjectItem()">
+                <ion-icon name="add"></ion-icon>
+              </span>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -53,7 +53,7 @@
   </div>
   <div class="description-container">
     <div class="description-header">
-        תיאור הפרויקט
+      תיאור הפרויקט
     </div>
     <div class="description-content">
       {{project.description}}
@@ -61,7 +61,7 @@
   </div>
   <div class="project-items-container">
     <div class="project-items-header">
-        תכני הפרויקט
+      תכני הפרויקט
     </div>
     <div class="project-items-content">
       <ion-list>
@@ -70,6 +70,25 @@
             <ion-col col-10>
               <h3>{{item.project_item_name}}</h3>
               <p>{{item.date_created | date:'dd/MM/yyyy HH:MM'}}</p>
+            </ion-col>
+            <ion-col col-2>
+              <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </button>
+      </ion-list>
+    </div>
+  </div>
+  <div class="project-items-container">
+    <div class="project-items-header">
+      אנשי קשר
+    </div>
+    <div class="project-items-content">
+      <ion-list>
+        <button class="project-item-btn" ion-item  *ngFor="let contact of project.contacts">
+          <ion-row>
+            <ion-col col-10>
+              <h3>{{contact.firstName}} {{contact.lastName}}</h3>
             </ion-col>
             <ion-col col-2>
               <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
