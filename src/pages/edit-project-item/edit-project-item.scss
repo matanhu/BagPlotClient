@@ -89,7 +89,7 @@ page-edit-project-item {
     .inputs-container {
         direction: rtl;
         background: rgba(255,255,255,.7);
-        padding: 2.5em 1em .5em 1em;  
+        // padding: 2.5em 1em .5em 1em;
     }
 
     ion-item {
@@ -99,13 +99,26 @@ page-edit-project-item {
         box-shadow: inset 0 -1px 0 0 #488aff;
     }
 
-    ion-label {
+    .label-header {
         font-size: 1em!important;
         font-weight: bold;
-        text-decoration: underline;
+        padding: 1em 2.5em;
+        background: #2e3e50;
+        color: #fff!important;
+        margin: 10px 0!important;
+        font-size: 1em;
     }
     
     .item-inner {
         border-bottom: 1px solid #2e3e50;
+        padding: 0!important;
+    }
+
+    textarea {
+        min-height: 96px;
+    }
+
+    .nopadding {
+        padding: 0!important;
     }
 }

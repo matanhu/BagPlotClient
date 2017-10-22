@@ -13,7 +13,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class EditProjectItemPage {
 
   public projectItem = new ItemProject();
-  private callbackOnDismiss;
 
   constructor(
     public navCtrl: NavController, 
@@ -22,8 +21,13 @@ export class EditProjectItemPage {
     private projectItemProvider: ProjectItemProvider,
     public camera: Camera,
     public firebaseProvider: FirebaseProvider) {
-      this.projectItem.project_id = this.navParams.get('project').id;
-      this.callbackOnDismiss = this.navParams.get('callback');
+      this.projectItem = this.navParams.get('projectItem');
+      this.projectItemProvider.getProjectItemById(this.projectItem).subscribe(
+        (res) => {
+          if(res.isSuccess) {
+            this.projectItem = res;
+          }
+        });
   }
 
   ionViewDidLoad() {
@@ -70,15 +74,12 @@ export class EditProjectItemPage {
   }
 
   onSave() {
-    this.projectItemProvider.createProjecrItem(this.projectItem).subscribe(
+    this.projectItemProvider.updateProjectItem(this.projectItem).subscribe(
       (res) => {
         if(res.isSuccess) {
           // this.navCtrl.pop();
           this.projectItem = res;
-          this.callbackOnDismiss(this.projectItem).then(
-            () => {
               this.viewCtrl.dismiss();
-            });
         }
       }
     );

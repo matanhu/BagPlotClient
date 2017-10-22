@@ -52,6 +52,10 @@ export class ProjectPage {
     this.navCtrl.push(NewContactPage, {project: this.project});
   }
 
+  onEditProjectItem(projectItem) {
+    this.navCtrl.push(EditProjectItemPage, {projectItem: projectItem})
+  }
+
   onNewProjectItemDismiss(newItem) {
     return new Promise((resolve, reject) => {
       this.project.itemsProject.push(newItem);

@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="custome-primary">
-    <ion-title>הוספת תוכן</ion-title>
+    <ion-title>{{projectItem.project_item_name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,12 +24,12 @@
   </div>
   <div class="inputs-container">
     <ion-list>
-      <ion-item>
-        <ion-label stacked>כותרת</ion-label>
-        <ion-input type="text" [(ngModel)]="projectItem.name"></ion-input>
+      <ion-item class="nopadding">
+        <ion-label class="label-header" stacked>כותרת</ion-label>
+        <ion-input type="text" [(ngModel)]="projectItem.project_item_name"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label stacked>תיאור</ion-label>
+      <ion-item class="nopadding">
+        <ion-label class="label-header" stacked>תיאור</ion-label>
         <!-- <ion-input type=""></ion-input> -->
         <ion-textarea rows="1" id="descriptionInputBox" [(ngModel)]="projectItem.description" (input)="onChangeDescription()"></ion-textarea>
       </ion-item>

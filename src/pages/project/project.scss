@@ -85,29 +85,34 @@ page-project {
         direction: rtl;
         // height: 40%;
         background: rgba(255,255,255,.7);
-        padding: 2.5em 1em .5em 1em;    
+        // padding: 2.5em 1em .5em 1em;
+        padding: 2.5em 0 .5em 0;
     }
 
-    .description-header, .project-items-header {
+    .description-header, .project-items-header, .contacts-header {
         font-weight: bold;
-        text-decoration: underline;
-        padding: 0 0 1em 0;
+        padding: 1em 2.5em;
         max-height: 20%;
+        background: #2e3e50;
+        color: #fff;
+        font-size: 1em;
     }
 
-    .description-content, .project-items-content {
+    .description-content, .project-items-content, .contacts-content {
         max-height: 12em;
         overflow-y: scroll;
+        padding: .5em 1em .5em 1em;
     }
 
-    .project-items-container {
+    .project-items-container, .contacts-container {
         direction: rtl;
         // height: 40%;
         background: rgba(255,255,255,.7);
-        padding: .5em 1em .5em 1em; 
+        // padding: .5em 1em .5em 1em;
+        padding: .5em 0 .5em 0;
     }
 
-    .project-item-btn {
+    .project-item-btn, .contact-btn {
         background: rgba(0,0,0,0);
     }
 

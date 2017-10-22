@@ -32,7 +32,7 @@
             </div>
           </ion-col>
           <ion-col>
-            <div>אנשי קשר</div>
+            <div>שליחת Doc</div>
             <div>
               <span class="budget" (click)="createDocx()">
                 <ion-icon name="download"></ion-icon>
@@ -59,42 +59,71 @@
       {{project.description}}
     </div>
   </div>
+
+
   <div class="project-items-container">
     <div class="project-items-header">
       תכני הפרויקט
     </div>
     <div class="project-items-content">
       <ion-list>
-        <button class="project-item-btn" ion-item (click)="onProjectItemClick(item)" *ngFor="let item of project.itemsProject">
-          <ion-row>
-            <ion-col col-10>
-              <h3>{{item.project_item_name}}</h3>
-              <p>{{item.date_created | date:'dd/MM/yyyy HH:MM'}}</p>
-            </ion-col>
-            <ion-col col-2>
-              <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </button>
+        <ion-item-sliding class="project-item-btn" *ngFor="let item of project.itemsProject">
+          <ion-item class="project-item-btn" (click)="onProjectItemClick(item)">
+            <!-- <button class="project-item-btn" ion-item (click)="onProjectItemClick(item)" *ngFor="let item of project.itemsProject"> -->
+            <ion-row>
+              <ion-col col-10>
+                <h3>{{item.project_item_name}}</h3>
+                <p>{{item.date_created | date:'dd/MM/yyyy HH:MM'}}</p>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <!-- </button> -->
+          </ion-item>
+          <ion-item-options side="left" style="direction:ltr">
+            <button ion-button icon-only color="danger">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+            <button ion-button icon-only color="custome-primary" (click)="onEditProjectItem(item)">
+              <ion-icon name="create"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
     </div>
   </div>
-  <div class="project-items-container">
-    <div class="project-items-header">
+
+
+
+  <div class="contacts-container">
+    <div class="contacts-header">
       אנשי קשר
     </div>
-    <div class="project-items-content">
+    <div class="contacts-content">
       <ion-list>
-        <button class="project-item-btn" ion-item  *ngFor="let contact of project.contacts">
-          <ion-row>
-            <ion-col col-10>
-              <h3>{{contact.firstName}} {{contact.lastName}}</h3>
-            </ion-col>
-            <ion-col col-2>
-              <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </button>
+        <ion-item-sliding class="contact-btn" *ngFor="let contact of project.contacts">
+          <ion-item class="contact-btn">
+            <!-- <button class="contact-btn" ion-item *ngFor="let contact of project.contacts"></button> -->
+            <ion-row>
+              <ion-col col-10>
+                <h3>{{contact.firstName}} {{contact.lastName}}</h3>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <!-- </button> -->
+          </ion-item>
+          <ion-item-options side="left" style="direction:ltr">
+            <button ion-button icon-only color="danger">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+            <button ion-button icon-only color="custome-primary">
+              <ion-icon name="create"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
     </div>
   </div>
