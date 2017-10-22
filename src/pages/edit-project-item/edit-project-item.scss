@@ -1,0 +1,111 @@
+page-edit-project-item {
+    ion-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 50px 1px;
+        direction: rtl;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        z-index: -1;
+    }
+
+    .content:after {
+        background-image: url(../assets/images/background.jpg);
+        background-position: top center;
+        background-image: url(../assets/images/background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+    }
+
+    .scroll-content {
+        margin-top: 4em;
+    }
+
+    .cover-container {
+        position: relative;
+        min-height: 5em;
+    }
+
+    .conver-image-container img {
+        width: 100%;
+        min-height: 270px;
+    }
+
+    .default-image {
+        // opacity: 0.7;
+        border: 2px solid #2e3e50;
+    }
+
+    .edit-image {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .cover-text-container {
+        text-align: center;
+        position: absolute;
+        bottom: 2px;
+        z-index: 999;
+        background: rgba(46, 62, 80, 0.8);
+        width: 100%;
+        padding: 0 1em;
+        /* line-height: 2em; */
+        direction: rtl;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .grid {
+        padding: 5px 0 1em 0;
+    }
+
+    .budget {
+        background: #646464;
+        line-height: .5em;
+        text-align: center;
+        padding: 20px;
+        width: 5em;
+        height: 1em;
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .project-name {
+        font-size: 1.5em;
+    }
+
+    .inputs-container {
+        direction: rtl;
+        background: rgba(255,255,255,.7);
+        padding: 2.5em 1em .5em 1em;  
+    }
+
+    ion-item {
+        background: transparent!important;
+        border-bottom-color: #2e3e50;
+        -webkit-box-shadow: inset 0 -1px 0 0 #488aff;
+        box-shadow: inset 0 -1px 0 0 #488aff;
+    }
+
+    ion-label {
+        font-size: 1em!important;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    
+    .item-inner {
+        border-bottom: 1px solid #2e3e50;
+    }
+}

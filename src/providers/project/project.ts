@@ -48,16 +48,26 @@ export class ProjectProvider {
       });
   }
 
+  // createDocx(project) {
+  //   let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+  //   let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer }); // Create a request option
+
+  //   return this.http.post(ENV.serverUrl + '/api/createDocx', project, options)
+  //     .map((response) => {
+  //       // return response.json()
+  //       var blob = URL.createObjectURL(new Blob([response.blob()],{ type: 'application/docx' }));
+  //       // window.location = url;
+  //       window.open(blob);
+  //     });
+  // }
+
   createDocx(project) {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer }); // Create a request option
+    let options = new RequestOptions({ headers: headers }); // Create a request option
 
     return this.http.post(ENV.serverUrl + '/api/createDocx', project, options)
       .map((response) => {
-        // return response.json()
-        var blob = URL.createObjectURL(new Blob([response.blob()],{ type: 'application/docx' }));
-        // window.location = url;
-        window.open(blob);
+        return response.json();
       });
   }
 

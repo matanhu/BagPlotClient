@@ -19,4 +19,12 @@ export const ConstMessage = {
     addContactCellular: `<div>אנא הזן את מספר הסלולארי של איש הקשר.</div>`,
     addContactEmail: `<div>אנא הזן את כתובת הדוא"ל של איש הקשר</div>`,
     thankYou: `<div>הפרוייקט שהוספת נוסף בהצלחה</div>`
+};
+
+export const ConstNewItemMessages = {
+    helloNewItem: `<div>שלום,</div>
+        <div>הגעת לעמוד הוספת תוכן חדש לפרויקט</div>
+        <div>אנא הכנס כותרת לתוכן</div>`,
+    insertDescription: `<div>אנא הכנס תיאור</div>`,
+    addImage:`<div>להוספת תמונה יש ללחוץ על כפתור המצלמה בפינה הימית העליונה</div>` 
 }

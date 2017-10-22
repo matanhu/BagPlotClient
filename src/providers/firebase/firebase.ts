@@ -11,11 +11,19 @@ export class FirebaseProvider {
     console.log('Hello FirebaseProvider Provider');
   }
 
-  uploadImage(image: string, projectId: Number): any {
+  uploadImageProject(image: string, projectId: Number): any {
     let storageRef = firebase.storage().ref();
     let imageName = this.generateUUID();
     var imageRef;
     imageRef = storageRef.child(`${projectId}/${imageName}.jpg`);
+    return imageRef.putString(image, 'data_url');    
+  }
+
+  uploadImageItemProject(image: string, projectId: Number, itemProjectId: Number): any {
+    let storageRef = firebase.storage().ref();
+    let imageName = this.generateUUID();
+    var imageRef;
+    imageRef = storageRef.child(`${projectId}/${imageName}/${itemProjectId}.jpg`);
     return imageRef.putString(image, 'data_url');    
   }
 

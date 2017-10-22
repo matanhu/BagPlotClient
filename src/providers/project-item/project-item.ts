@@ -30,4 +30,14 @@ export class ProjectItemProvider {
       });
   }
 
+  updateProjectItem(projectItem) {
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers }); // Create a request option
+
+    return this.http.put(ENV.serverUrl + '/api/updateProjectItem',projectItem, options)
+      .map((response) => {
+        return response.json()
+      });
+  }
+
 }

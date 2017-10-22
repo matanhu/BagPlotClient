@@ -26,8 +26,13 @@ page-project {
         opacity: .5;
     }
 
+    .scroll-content {
+        margin-top: 4em;
+    }
+
     .cover-container {
         position: relative;
+        min-height: 7.1em;
     }
 
     .conver-image-container img {

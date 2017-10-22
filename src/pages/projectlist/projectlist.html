@@ -8,40 +8,42 @@
 
 
 <ion-content class="content">
+  <div>
     <ion-row>
-    <ion-card *ngFor="let project of projectList; let i = index">
-      <button class="card-header-btn" ion-button full [clear]="true" (click)="onProjectClick(project)">
-        <ion-item class="card-header-btn-content">
-          <ion-avatar item-start>
-            <img [src]="project.image">
-          </ion-avatar>
-          <h2>{{project.project_name}}</h2>
-          <p class="date">{{project.date_created | date:'dd/MM/yyyy'}}</p>
-        </ion-item>
-      </button>
-      <img [src]="project.image">
-      <ion-card-content>
+      <ion-card *ngFor="let project of projectList; let i = index">
+        <button class="card-header-btn" ion-button full [clear]="true" (click)="onProjectClick(project)">
+          <ion-item class="card-header-btn-content">
+            <ion-avatar item-start>
+              <img [src]="project.image">
+            </ion-avatar>
+            <h2>{{project.project_name}}</h2>
+            <p class="date">{{project.date_created | date:'dd/MM/yyyy'}}</p>
+          </ion-item>
+        </button>
+        <img [src]="project.image">
+        <ion-card-content>
           <p>{{project.description}}</p>
-      </ion-card-content>
-      <ion-row>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 likes</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="text"></ion-icon>
-            <div>4 comments</div>
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <ion-note>
-            <div class="created-before">11h ago</div>
-          </ion-note>
-        </ion-col>
-      </ion-row>
-    </ion-card>
-  </ion-row>
+        </ion-card-content>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>12 likes</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>4 comments</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              <div class="created-before">11h ago</div>
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+  </div>
 </ion-content>

@@ -1,5 +1,6 @@
-import { ProjectItemPage } from '../project-item/project-item';
 import { NewProjectItemPage } from '../new-project-item/new-project-item';
+import { ProjectItemPage } from '../project-item/project-item';
+import { EditProjectItemPage } from '../edit-project-item/edit-project-item';
 import { ProjectProvider } from '../../providers/project/project';
 import { Project } from '../../models/project';
 import { Component } from '@angular/core';
@@ -41,8 +42,9 @@ export class ProjectPage {
   }
 
   onAddProjectItem() {
-    // this.navCtrl.push(NewProjectItemPage, {project: this.project});
-    this.navCtrl.push(NewProjectItemPage, {project: this.project, callback: this.onNewProjectItemDismiss.bind(this)});
+    this.navCtrl.push(NewProjectItemPage, {project: this.project});
+    // this.navCtrl.push(EditProjectItemPage, {project: this.project});
+    // this.navCtrl.push(EditProjectItemPage, {project: this.project, callback: this.onNewProjectItemDismiss.bind(this)});
   }
 
   onNewProjectItemDismiss(newItem) {

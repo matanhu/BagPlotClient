@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar color="custome-primary">
+    <ion-title>הוספת תוכן</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content class="content">
+  <div class="cover-container">
+    <div class="conver-image-container">
+      <img [src]="projectItem.image" *ngIf="projectItem.image">
+      <img class="default-image" src="../assets/images/background.jpg" *ngIf="!projectItem.image">
+      <!-- <img src="https://dummyimage.com/360x270/"> -->
+      <div class="edit-image">
+        <button ion-button icon-end color="custome-primary" (click)="takePhoto()">
+          ערוך
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="inputs-container">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>כותרת</ion-label>
+        <ion-input type="text" [(ngModel)]="projectItem.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>תיאור</ion-label>
+        <!-- <ion-input type=""></ion-input> -->
+        <ion-textarea rows="1" id="descriptionInputBox" [(ngModel)]="projectItem.description" (input)="onChangeDescription()"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <button ion-button full color="custome-primary" (click)="onSave()">
+        שמירה
+      </button>
+  </div>
+  <!-- <div class="description-container">
+    <div class="description-header">
+        תיאור הפרויקט
+    </div>
+    <div class="description-content">
+      {{projectItem.description}}
+    </div>
+  </div> -->
+</ion-content>

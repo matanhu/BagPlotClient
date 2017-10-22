@@ -1,3 +1,4 @@
+import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
 import { HttpModule } from '@angular/http';
 import { NewProjectPage } from '../pages/new-project/new-project';
 import { ProjectlistPage } from '../pages/projectlist/projectlist';
@@ -8,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { Camera } from '@ionic-native/camera';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,7 +20,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
 import { ProjectItemPage } from '../pages/project-item/project-item';
 import { ProjectPage } from '../pages/project/project';
 import { ProjectItemProvider } from '../providers/project-item/project-item';
-import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
+import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-item';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
     NewProjectPage,
     ProjectPage,
     ProjectItemPage,
+    EditProjectItemPage,
     NewProjectItemPage
   ],
   imports: [
@@ -43,6 +46,7 @@ import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
     NewProjectPage,
     ProjectPage,
     ProjectItemPage,
+    EditProjectItemPage,
     NewProjectItemPage
   ],
   providers: [
@@ -53,6 +57,7 @@ import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
     ProjectProvider,
     ContactProvider,
     Camera,
+    Keyboard,
     FirebaseProvider,
     ProjectItemProvider
   ]

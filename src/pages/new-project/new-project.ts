@@ -24,7 +24,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
 
   private stepNumber = 0;
   private lastAnswers = new Array<string>();
-  private trueFalsLast: Boolean;
+  private trueFalseLast: Boolean;
   public message: string;
   @ViewChild('textMessage', {read: ElementRef}) textMessageElm: ElementRef;
 
@@ -151,7 +151,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
     element.style.height      = scroll_height + "px";
     textarea.style.minHeight  = scroll_height + "px";
     textarea.style.height     = scroll_height + "px";
-}
+  }
 
   sendTextMessage(): void {
     // If message was yet to be typed, abort
@@ -208,12 +208,12 @@ export class NewProjectPage implements OnInit, OnDestroy{
 
   selectNewOrExistCustomer() {
     if (this.message === 'כן') {
-      this.trueFalsLast = true;
+      this.trueFalseLast = true;
       // this.lastAnswer = this.message;
       this.insertMessageToList(ConstMessage.createCustomerName, 'other');
       this.stepNumber++;
     } else if(this.message === 'לא') {
-      this.trueFalsLast = false;
+      this.trueFalseLast = false;
       // this.lastAnswer = this.message;
       this.insertMessageToList(ConstMessage.findOldCustomerName, 'other');
       this.stepNumber++;
@@ -223,7 +223,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
   }
 
   createCustomerName() {
-    if(this.trueFalsLast) {
+    if(this.trueFalseLast) {
       let customer = {
         customer_name: this.message,
         id: 0
@@ -238,7 +238,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
           console.log(res);
         }
       )
-    } else if(!this.trueFalsLast) {
+    } else if(!this.trueFalseLast) {
       let tempMessage = this.message;
       this.checkIfCustomerExist(this.message).subscribe(
         (customerExists: Array<any>) => {
@@ -263,7 +263,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
 
   customerNotFound() {
     if(this.message == 'כן') {
-      this.trueFalsLast = true;
+      this.trueFalseLast = true;
       let customer = {
         customer_name: this.lastAnswers[this.lastAnswers.length-1],
         id: 0
@@ -279,7 +279,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
         }
       )
     } else if(this.message == 'לא') {
-      this.trueFalsLast = false;      
+      this.trueFalseLast = false;      
       this.insertMessageToList(ConstMessage.findOldCustomerName, 'other');
       this.stepNumber = 1;
       // this.lastAnswer = 'לא';
@@ -312,14 +312,14 @@ export class NewProjectPage implements OnInit, OnDestroy{
 
   isAddContact() {
     if(this.message === 'כן') {
-      this.trueFalsLast = true;
+      this.trueFalseLast = true;
       let tempContact = new Contact();
       tempContact.project_id = this.project.id;
       this.project.contacts.push(tempContact);
       this.insertMessageToList(ConstMessage.addContactFirstName, 'other');
       this.stepNumber++;
     } else if(this.message === 'לא') {
-      this.trueFalsLast = false;
+      this.trueFalseLast = false;
       this.insertMessageToList(ConstMessage.thankYou, 'other');
       this.stepNumber = 50;
     } else {
@@ -378,6 +378,7 @@ export class NewProjectPage implements OnInit, OnDestroy{
   }
 
   takePhoto() {
+    var base64Image;
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -387,8 +388,8 @@ export class NewProjectPage implements OnInit, OnDestroy{
 
     this.camera.getPicture(options)
       .then(data => {
-        let base64Image = 'data:image/jpeg;base64,' + data;
-        return this.firebaseProvider.uploadImage(base64Image, this.project.id);
+        base64Image = 'data:image/jpeg;base64,' + data;
+        return this.firebaseProvider.uploadImageProject(base64Image, this.project.id);
       })
       .then(data => {
         console.log(data.downloadURL);
@@ -397,6 +398,8 @@ export class NewProjectPage implements OnInit, OnDestroy{
           (projectRes) => {
             if(projectRes.isSuccess) {
               this.project.image = projectRes.image;
+              let imageHtml = `<image src="` + base64Image + `">`;
+              this.insertMessageToList(imageHtml, 'mine');
             } else {
               console.log(projectRes.errorMessage);
             }

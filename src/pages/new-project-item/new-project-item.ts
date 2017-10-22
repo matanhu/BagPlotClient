@@ -1,36 +1,167 @@
-import { ProjectItemProvider } from '../../providers/project-item/project-item';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { ProjectItemProvider } from '../../providers/project-item/project-item';
 import { ItemProject } from '../../models/itemProject';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ConstNewItemMessages } from '../../Consts/ConstMessage';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
   selector: 'page-new-project-item',
   templateUrl: 'new-project-item.html',
 })
-export class NewProjectItemPage {
+export class NewProjectItemPage implements OnInit, OnDestroy {
+  private itemProject = new ItemProject();
+  public listMessages = new Array<any>();
+  
+  private stepNumber = 0;
+  private lastAnswers = new Array<string>();
+  private trueFalseLast: Boolean;
+  public message: string;
+  @ViewChild('textMessage', {read: ElementRef}) textMessageElm: ElementRef;
 
-  public projectItem = new ItemProject();
-  private callbackOnDismiss;
+  private autoScroller: MutationObserver;
+  private scrollOffset = 0;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewCtrl: ViewController,
-    private projectItemProvider: ProjectItemProvider,
-    public camera: Camera,
-    public firebaseProvider: FirebaseProvider) {
-      this.projectItem.project_id = this.navParams.get('project').id;
-      this.callbackOnDismiss = this.navParams.get('callback');
+    private el: ElementRef,
+    private camera: Camera,
+    private firebaseProvider: FirebaseProvider,
+    private projectItemProvider: ProjectItemProvider) {
+      this.itemProject.project_id = this.navParams.get('project').id;
+      this.insertMessageToList(ConstNewItemMessages['helloNewItem'], 'other');
+  }
+
+  ngOnInit() {
+    this.autoScroller = this.autoScroll();
+  }
+
+  ngOnDestroy() {
+    this.autoScroller.disconnect();
+  }
+
+  insertMessageToList(message, ownership) {
+    let messageTemp = {
+      content: message,
+      createdAt: new Date(),
+      ownership: ownership === 'other' ? 'other' : 'mine'
+    };
+    this.listMessages.push(messageTemp);
+  }
+
+  autoScroll(): MutationObserver {
+    const autoScroller = new MutationObserver(this.scrollDown.bind(this));
+ 
+    autoScroller.observe(this.messagesList, {
+      childList: true,
+      subtree: true
+    });
+ 
+    return autoScroller;
+  }
+
+  scrollDown(): void {
+    // Scroll down and apply specified offset
+    this.scroller.scrollTop = this.scroller.scrollHeight - this.scrollOffset;
+    // Zero offset for next invocation
+    this.scrollOffset = 0;
+  }
+
+  private get scroller(): Element {
+    return this.messagesList.querySelector('.scroll-content');
+  }
+
+  private get messagesList(): Element {
+    return this.messagesPageContent.querySelector('.messages');
+  }
+
+  private get messagesPageContent(): Element {
+    return this.el.nativeElement.querySelector('.messages-page-content');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewProjectItemPage');
   }
 
+  onInputKeypress(keyCode: KeyboardEvent): void {
+    // if (keyCode.charCode === 13) {
+    //   this.sendTextMessage();
+    // }
+  }
+
+  changeTextMessage() {
+    // get elements
+    var element   = document.getElementById('messageInputBox');
+    var textarea  = element.getElementsByTagName('textarea')[0];
+
+    // set default style for textarea
+    textarea.style.minHeight  = '0';
+    textarea.style.height     = '0';
+
+    // limit size to 96 pixels (6 lines of text)
+    var scroll_height = textarea.scrollHeight;
+    if(scroll_height > 64)
+      scroll_height = 64;
+
+    // apply new style
+    element.style.height      = scroll_height + "px";
+    textarea.style.minHeight  = scroll_height + "px";
+    textarea.style.height     = scroll_height + "px";
+  }
+
+  sendTextMessage(): void {
+    // If message was yet to be typed, abort
+    if (!this.message) {
+      return;
+    }
+    this.message = this.message.trim();
+    this.insertMessageToList(this.message, 'mine');
+
+    switch(this.stepNumber) {
+      case 0:
+        this.addItemName();
+        break
+      case 1:
+        this.addDescription();
+        break
+    }
+
+    this.lastAnswers.push(this.message);
+    this.message = '';
+    // document.getElementById('messageInputBox').childNodes[0].focus();
+    this.textMessageElm.nativeElement.querySelector('textarea').focus();
+  }
+
+  addItemName() {
+    this.itemProject.setName(this.message);
+    this.projectItemProvider.createProjecrItem(this.itemProject).subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.itemProject.id = res.id;
+          this.insertMessageToList(ConstNewItemMessages.insertDescription, 'other');
+          this.stepNumber++;
+        }
+      }
+    );
+  }
+
+  addDescription() {
+    this.itemProject.setDescription(this.message);
+    this.projectItemProvider.updateProjectItem(this.itemProject).subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.insertMessageToList(ConstNewItemMessages.addImage, 'other');
+          this.stepNumber++;
+        }
+      }
+    );
+  }
+
   takePhoto() {
+    var base64Image;
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -40,50 +171,24 @@ export class NewProjectItemPage {
 
     this.camera.getPicture(options)
       .then(data => {
-        let base64Image = 'data:image/jpeg;base64,' + data;
-        return this.firebaseProvider.uploadImage(base64Image, this.projectItem.project_id);
+        base64Image = 'data:image/jpeg;base64,' + data;
+        return this.firebaseProvider.uploadImageItemProject(base64Image, this.itemProject.project_id, this.itemProject.id);
       })
       .then(data => {
         console.log(data.downloadURL);
-        this.projectItem.image = data.downloadURL;
+        this.itemProject.image = data.downloadURL;
+        this.projectItemProvider.updateProjectItem(this.itemProject).subscribe(
+          (projectRes) => {
+            if(projectRes.isSuccess) {
+              this.itemProject.image = projectRes.image;
+              let imageHtml = `<image src="` + base64Image + `">`;
+              this.insertMessageToList(imageHtml, 'mine');
+            } else {
+              console.log(projectRes.errorMessage);
+            }
+          }
+        );
       });
   }
-
-  onChangeDescription() {
-    // get elements
-    var element   = document.getElementById('descriptionInputBox');
-    var textarea  = element.getElementsByTagName('textarea')[0];
-
-    // set default style for textarea
-    textarea.style.minHeight  = '0';
-    textarea.style.height     = '0';
-
-    // limit size to 96 pixels (6 lines of text)
-    var scroll_height = textarea.scrollHeight + 10;
-    if(scroll_height > 96)
-      scroll_height = 96;
-
-    // apply new style
-    element.style.height      = scroll_height + "px";
-    textarea.style.minHeight  = scroll_height + "px";
-    textarea.style.height     = scroll_height + "px";
-  }
-
-  onSave() {
-    this.projectItemProvider.createProjecrItem(this.projectItem).subscribe(
-      (res) => {
-        if(res.isSuccess) {
-          // this.navCtrl.pop();
-          this.projectItem = res;
-          this.callbackOnDismiss(this.projectItem).then(
-            () => {
-              this.viewCtrl.dismiss();
-            });
-        }
-      }
-    );
-  }
-
-  
 
 }
