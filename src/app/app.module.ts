@@ -1,3 +1,4 @@
+import { NewContactPage } from '../pages/new-contact/new-contact';
 import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
 import { HttpModule } from '@angular/http';
 import { NewProjectPage } from '../pages/new-project/new-project';
@@ -31,7 +32,8 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     ProjectPage,
     ProjectItemPage,
     EditProjectItemPage,
-    NewProjectItemPage
+    NewProjectItemPage,
+    NewContactPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     ProjectPage,
     ProjectItemPage,
     EditProjectItemPage,
-    NewProjectItemPage
+    NewProjectItemPage,
+    NewContactPage
   ],
   providers: [
     StatusBar,

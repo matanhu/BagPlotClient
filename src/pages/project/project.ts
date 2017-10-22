@@ -1,3 +1,4 @@
+import { NewContactPage } from '../new-contact/new-contact';
 import { NewProjectItemPage } from '../new-project-item/new-project-item';
 import { ProjectItemPage } from '../project-item/project-item';
 import { EditProjectItemPage } from '../edit-project-item/edit-project-item';
@@ -45,6 +46,10 @@ export class ProjectPage {
     this.navCtrl.push(NewProjectItemPage, {project: this.project});
     // this.navCtrl.push(EditProjectItemPage, {project: this.project});
     // this.navCtrl.push(EditProjectItemPage, {project: this.project, callback: this.onNewProjectItemDismiss.bind(this)});
+  }
+
+  onAddContact() {
+    this.navCtrl.push(NewContactPage, {project: this.project});
   }
 
   onNewProjectItemDismiss(newItem) {

@@ -24,7 +24,19 @@ export const ConstMessage = {
 export const ConstNewItemMessages = {
     helloNewItem: `<div>שלום,</div>
         <div>הגעת לעמוד הוספת תוכן חדש לפרויקט</div>
-        <div>אנא הכנס כותרת לתוכן</div>`,
-    insertDescription: `<div>אנא הכנס תיאור</div>`,
+        <div>אנא הזן כותרת לתוכן</div>`,
+    insertDescription: `<div>אנא הזן תיאור</div>`,
     addImage:`<div>להוספת תמונה יש ללחוץ על כפתור המצלמה בפינה הימית העליונה</div>` 
+}
+
+export const ConstNewContactMessages = {
+    helloNewContact: `<div>שלום,</div>
+        <div>הגעת לעמוד הוספת איש קשר חדש לפרויקט</div>
+        <div>אנא הזן שם פרטי</div>`,
+    addContactLastName: `<div>אנא הזן שם משפחה של איש הקשר.</div>`,
+    insertPhoneOffice: `<div>אנא הזן את מספר הטלפון במשרד של איש הקשר.</div>`,
+    insertFaxNumber: `<div>אנא הזן את מספר הפקס של איש הקשר.</div>`,
+    insertCellular: `<div>אנא הזן את מספר הסלולארי של איש הקשר.</div>`,
+    insertEmail: `<div>אנא הזן את כתובת הדוא"ל של איש הקשר</div>`,
+    thankYou: `<div>איש הקשר נוסף בהצלחה</div>`
 }
