@@ -2,7 +2,7 @@ import { ProjectProvider } from '../../providers/project/project';
 import { NewProjectPage } from '../new-project/new-project';
 import { ProjectlistPage } from '../projectlist/projectlist';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -14,12 +14,19 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
+    private loadingCtrl: LoadingController,
     private projectProvider: ProjectProvider) {
+      const loading = this.loadingCtrl.create({
+        content: 'טוען',
+        spinner: 'bubbles'
+      });
+      loading.present();
       this.projectProvider.getCountOfProjects().subscribe(
         (res) => {
           if(res.isSuccess) {
             this.countProjects = res.countProjects;
           }
+          loading.dismiss();
         });
   }
 

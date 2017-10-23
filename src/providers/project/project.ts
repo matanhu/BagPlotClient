@@ -70,11 +70,15 @@ export class ProjectProvider {
   //     });
   // }
 
-  createDocx(project) {
+  createDocx(project, emailTo) {
+    let req = {
+      project: project,
+      emailTo: emailTo
+    }
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
 
-    return this.http.post(ENV.serverUrl + '/api/createDocx', project, options)
+    return this.http.post(ENV.serverUrl + '/api/createDocx', req, options)
       .map((response) => {
         return response.json();
       });

@@ -5,7 +5,7 @@ import { EditProjectItemPage } from '../edit-project-item/edit-project-item';
 import { ProjectProvider } from '../../providers/project/project';
 import { Project } from '../../models/project';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,14 +19,22 @@ export class ProjectPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    private loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
     private projecrProvider: ProjectProvider) {
     this.project = this.navParams.get('project');
+    const loading = this.loadingCtrl.create({
+      content: 'טוען',
+      spinner: 'bubbles'
+    });
+    loading.present();
     this.projecrProvider.getProjectByIdClient(this.project.id).subscribe(
       (res) => {
         if(res.isSuccess) {
           this.project = res;
         }
+        loading.dismiss();
       }
     )
   }
@@ -36,10 +44,37 @@ export class ProjectPage {
   }
 
   createDocx() {
-    this.projecrProvider.createDocx(this.project).subscribe
-      ((res) => {
-        console.log(res);
-      });
+    let prompt = this.alertCtrl.create({
+      title: 'שליחת קובץ DOC',
+      message: "אנא הזן את כתובת המייל אליו ישלח הקישור",
+      cssClass: "alertRtl",
+      inputs: [
+        {
+          name: 'emailTo',
+          placeholder: 'הכנס כתובת דוא"ל'
+        },
+      ],
+      buttons: [
+        {
+          text: 'ביטול',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'שלח',
+          handler: data => {
+            this.projecrProvider.createDocx(this.project, data.emailTo).subscribe
+            ((res) => {
+              console.log(res);
+            });
+            console.log(data);
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   onAddProjectItem() {
