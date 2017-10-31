@@ -26,6 +26,56 @@ page-projectlist {
         opacity: .5;
     }
 
+    ion-searchbar {
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        top: 0%;
+        position: absolute;
+        right: 2.5em;
+        /* -webkit-transform: translate(-50%, 0); */
+        /* transform: translate(50%, 0); */
+        direction: rtl;
+        width: 75%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        width: 0%;
+    }
+
+    ion-searchbar input {
+        padding: .5em 0!important;
+        -webkit-box-shadow: none!important;
+        box-shadow: none!important;
+        background-color: rgba(0,0,0,0)!important;
+        border: none !important;
+        border-bottom: 2px solid #fff !important;
+        transition: all .5s;
+        color: #fff!important;
+    }
+
+    ion-searchbar .searchbar-search-icon {
+        display: none;
+    }
+
+    ion-searchbar.showSeach {
+        // top: 0%;
+        width: 75%;
+        
+    }
+
+    ion-searchbar.showSeach input {
+        padding: 0.5em 2.5em !important;
+    }
+    
+
+    ion-searchbar.showSeach .searchbar-search-icon {
+        display: block;
+    }
+
+    ion-searchbar .searchbar-input-container {
+        height: 100%;
+    }
+
     .scroll-content {
         margin-top: 4em;
     }
@@ -48,7 +98,7 @@ page-projectlist {
         color: #fff!important;
     }
 
-    .card-header-btn h2 {
+    .card-header-btn h2, .card-header-btn h3 {
         color: #fff;
     }
 
@@ -97,5 +147,9 @@ page-projectlist {
         justify-content: center;
         width: 100%;
         height: 100%;
+    }
+
+    .toast-message {
+        direction: rtl;
     }
 }

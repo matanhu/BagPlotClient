@@ -39,8 +39,23 @@ export class ProjectProvider {
       });
   }
 
+  searchProject(searchText) {
+    return this.http.get(ENV.serverUrl + '/api/searchProject/' + searchText)
+      .map((response) => {
+        return response.json()
+      });
+  }
+
   getProjectByIdClient(projectId) {
     return this.http.get(ENV.serverUrl + '/api/getProjectByIdClient/' + projectId)
+      // return this.http.get(ENV.serverUrl + '/api/getAllProjects')
+      .map((response) => {
+        return response.json();
+      });
+  }
+
+  deleteProjectById(projectId) {
+    return this.http.delete(ENV.serverUrl + '/api/deleteProjectById/' + projectId)
       // return this.http.get(ENV.serverUrl + '/api/getAllProjects')
       .map((response) => {
         return response.json();

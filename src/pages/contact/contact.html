@@ -1,0 +1,37 @@
+
+<ion-header>
+
+  <ion-navbar color="custome-primary">
+    <ion-title>{{contact.firstName}} {{contact.lastName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content">
+  <ion-card>
+    <ion-card-header>
+      {{contact.firstName}} {{contact.lastName}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <span class="property">טלפון במשרד: </span>
+        {{contact.phoneOffice}}
+        </ion-item>
+        <ion-item>
+          <span class="property">מספר פקס: </span>
+          {{contact.faxNumber}}
+        </ion-item>
+        <ion-item>
+          <span class="property">מספר סלולארי: </span>
+          {{contact.cellular}}
+        </ion-item>
+        <ion-item>
+          <span class="property">דוא"ל: </span>
+          <a [href]="'mailto:'+contact.email">{{contact.email}}</a>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

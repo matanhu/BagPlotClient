@@ -1,3 +1,5 @@
+import { ContactPage } from '../pages/contact/contact';
+import { EditProjectPage } from '../pages/edit-project/edit-project';
 import { NewContactPage } from '../pages/new-contact/new-contact';
 import { NewProjectItemPage } from '../pages/new-project-item/new-project-item';
 import { HttpModule } from '@angular/http';
@@ -35,7 +37,9 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     ProjectItemPage,
     EditProjectItemPage,
     NewProjectItemPage,
-    NewContactPage
+    NewContactPage,
+    ContactPage,
+    EditProjectPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     ProjectItemPage,
     EditProjectItemPage,
     NewProjectItemPage,
-    NewContactPage
+    NewContactPage,
+    ContactPage,
+    EditProjectPage
   ],
   providers: [
     StatusBar,

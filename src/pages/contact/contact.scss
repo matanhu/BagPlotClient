@@ -1,0 +1,42 @@
+page-contact {
+    ion-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 50px 1px;
+        direction: rtl;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        z-index: -1;
+    }
+
+    .content:after {
+        background-image: url(../assets/images/background.jpg);
+        background-position: top center;
+        background-image: url(../assets/images/background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+    }
+
+    ion-card {
+        direction: rtl;
+    }
+
+    ion-card ion-card-header {
+        background: color($colors, custome-primary);
+        color: #fff!important;
+        font-weight: bold;
+    }
+
+    ion-card ion-card-content {
+        padding: .5em!important;
+    }
+}

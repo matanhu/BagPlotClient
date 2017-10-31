@@ -16,18 +16,21 @@ export class HomePage {
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private projectProvider: ProjectProvider) {
-      const loading = this.loadingCtrl.create({
-        content: 'טוען',
-        spinner: 'bubbles'
+  }
+
+  ionViewWillEnter() {
+    const loading = this.loadingCtrl.create({
+      content: 'טוען',
+      spinner: 'bubbles'
+    });
+    loading.present();
+    this.projectProvider.getCountOfProjects().subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.countProjects = res.countProjects;
+        }
+        loading.dismiss();
       });
-      loading.present();
-      this.projectProvider.getCountOfProjects().subscribe(
-        (res) => {
-          if(res.isSuccess) {
-            this.countProjects = res.countProjects;
-          }
-          loading.dismiss();
-        });
   }
 
   onAllProjects() {

@@ -18,32 +18,32 @@
       </div>
       <div>
         <ion-note>
-          {{project.date_created | date:'dd/MM/yyyy'}}
+          {{project.date_created | date:'dd/MM/yyyy HH:mm'}}
         </ion-note>
       </div>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <div>אנשי קשר</div>
-            <div>
-              <span class="budget" (click)="onAddContact()">
-                <ion-icon name="add"></ion-icon>
+            <div>עריכת פרויקט</div>
+            <div class="budget-container">
+              <span class="budget" (click)="onEditProject()">
+                <ion-icon name="create"></ion-icon>
               </span>
             </div>
           </ion-col>
           <ion-col>
             <div>שליחת Doc</div>
-            <div>
+            <div class="budget-container">
               <span class="budget" (click)="createDocx()">
                 <ion-icon name="download"></ion-icon>
               </span>
             </div>
           </ion-col>
           <ion-col>
-            <div>הוספת תוכן</div>
-            <div>
-              <span class="budget" (click)="onAddProjectItem()">
-                <ion-icon name="add"></ion-icon>
+            <div>מחק פרויקט</div>
+            <div class="budget-container">
+              <span class="budget delete" (click)="onDeleteProject()">
+                <ion-icon name="trash"></ion-icon>
               </span>
             </div>
           </ion-col>
@@ -63,7 +63,16 @@
 
   <div class="project-items-container">
     <div class="project-items-header">
-      תכני הפרויקט
+      <ion-row>
+        <ion-col col-11>
+          תכני הפרויקט
+        </ion-col>
+        <ion-col col-1>
+          <button ion-button icon-only small [clear]="true" (click)="onAddProjectItem()">
+            <ion-icon name='add'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
     </div>
     <div class="project-items-content">
       <ion-list>
@@ -73,7 +82,7 @@
             <ion-row>
               <ion-col col-10>
                 <h3>{{item.project_item_name}}</h3>
-                <p>{{item.date_created | date:'dd/MM/yyyy HH:MM'}}</p>
+                <p>{{item.date_created | date:'dd/MM/yyyy HH:mm'}}</p>
               </ion-col>
               <ion-col col-2>
                 <ion-icon class="item-button-icon" name="arrow-back"></ion-icon>
@@ -98,12 +107,21 @@
 
   <div class="contacts-container">
     <div class="contacts-header">
-      אנשי קשר
+      <ion-row>
+        <ion-col col-11>
+          אנשי קשר
+        </ion-col>
+        <ion-col col-1>
+          <button ion-button icon-only small [clear]="true" (click)="onAddContact()">
+            <ion-icon name='add'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
     </div>
     <div class="contacts-content">
       <ion-list>
         <ion-item-sliding class="contact-btn" *ngFor="let contact of project.contacts">
-          <ion-item class="contact-btn">
+          <ion-item class="contact-btn" (click)="onContactClick(contact)">
             <!-- <button class="contact-btn" ion-item *ngFor="let contact of project.contacts"></button> -->
             <ion-row>
               <ion-col col-10>

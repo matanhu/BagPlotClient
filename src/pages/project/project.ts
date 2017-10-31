@@ -1,3 +1,5 @@
+import { ContactPage } from '../contact/contact';
+import { EditProjectPage } from '../edit-project/edit-project';
 import { NewContactPage } from '../new-contact/new-contact';
 import { NewProjectItemPage } from '../new-project-item/new-project-item';
 import { ProjectItemPage } from '../project-item/project-item';
@@ -5,7 +7,9 @@ import { EditProjectItemPage } from '../edit-project-item/edit-project-item';
 import { ProjectProvider } from '../../providers/project/project';
 import { Project } from '../../models/project';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, 
+  ModalController, AlertController, 
+  LoadingController, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -22,6 +26,7 @@ export class ProjectPage {
     private loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
     private projecrProvider: ProjectProvider) {
     this.project = this.navParams.get('project');
     const loading = this.loadingCtrl.create({
@@ -47,7 +52,7 @@ export class ProjectPage {
     let prompt = this.alertCtrl.create({
       title: 'שליחת קובץ DOC',
       message: "אנא הזן את כתובת המייל אליו ישלח הקישור",
-      cssClass: "alertRtl",
+      cssClass: "custom-alert",
       inputs: [
         {
           name: 'emailTo',
@@ -66,6 +71,17 @@ export class ProjectPage {
           handler: data => {
             this.projecrProvider.createDocx(this.project, data.emailTo).subscribe
             ((res) => {
+              const toast = this.toastCtrl.create({
+                duration: 3000,
+                position: 'bottom',
+                cssClass: 'custom-toast-message'
+              });
+              if (res.isSuccess) {
+                toast.setMessage('פרויקט נשלח בהצלחה');
+              } else {
+                toast.setMessage('זמנית לא ניתן לספק את השירות, אנא נסה מאוחר יותר');
+              }
+              toast.present();
               console.log(res);
             });
             console.log(data);
@@ -78,29 +94,97 @@ export class ProjectPage {
   }
 
   onAddProjectItem() {
-    this.navCtrl.push(NewProjectItemPage, {project: this.project});
-    // this.navCtrl.push(EditProjectItemPage, {project: this.project});
-    // this.navCtrl.push(EditProjectItemPage, {project: this.project, callback: this.onNewProjectItemDismiss.bind(this)});
+    // this.navCtrl.push(NewProjectItemPage, {project: this.project});
+    
+    new Promise((resolve, reject) => {
+      this.navCtrl.push(NewProjectItemPage, {project: this.project, resolve: resolve});
+    }).then((data: any) => {
+      switch(data.method) {
+        case 'addNewProjectItem':
+          this.addedNewProjectItem(data);
+          break
+      }
+      console.log('return data: ');
+      console.log(data);
+    });
   }
 
   onAddContact() {
-    this.navCtrl.push(NewContactPage, {project: this.project});
+    // this.navCtrl.push(NewContactPage, {project: this.project});
+
+    new Promise((resolve, reject) => {
+      this.navCtrl.push(NewContactPage, {project: this.project, resolve: resolve});
+    }).then((data: any) => {
+      switch(data.method) {
+        case 'addNewContact':
+          this.addedNewContact(data);
+          break
+      }
+      console.log('return data: ');
+      console.log(data);
+    });
   }
 
   onEditProjectItem(projectItem) {
     this.navCtrl.push(EditProjectItemPage, {projectItem: projectItem})
   }
 
-  onNewProjectItemDismiss(newItem) {
-    return new Promise((resolve, reject) => {
-      this.project.itemsProject.push(newItem);
-      resolve();
+  onEditProject() {
+    this.navCtrl.push(EditProjectPage, {project: this.project});
+  }
+
+  onDeleteProject() {
+    let confirm = this.alertCtrl.create({
+      title: 'מחיקת פרויקט',
+      message: 'האם אתה בטוח כי ברצונך למחוק פרויקט זה??',
+      cssClass: "custom-alert",
+      buttons: [
+        {
+          text: 'לא',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        },
+        {
+          text: 'כן',
+          handler: () => {
+            this.projecrProvider.deleteProjectById(this.project.id).subscribe(
+              (res) => {
+                if(res.isSuccess) {
+                  let deleteProjectRes = {
+                    method: 'deleteProject',
+                    isSuccess: res.isSuccess,
+                    project: this.project
+                  }
+                  this.navParams.get('resolve')(deleteProjectRes);
+                  this.navCtrl.pop();
+                }
+              });
+          }
+        }
+      ]
     });
-    
+    confirm.present();
+  }
+
+  addedNewProjectItem(data) {
+    if(data.isSuccess) {
+      this.project.itemsProject.push(data.itemProject);
+    }    
+  }
+
+  addedNewContact(data) {
+    if(data.isSuccess) {
+      this.project.contacts.push(data.contact);
+    }    
   }
 
   onProjectItemClick(projectItem) {
     this.navCtrl.push(ProjectItemPage, {projectItem: projectItem});
+  }
+
+  onContactClick(contact) {
+    this.navCtrl.push(ContactPage, {contact: contact});
   }
 
 

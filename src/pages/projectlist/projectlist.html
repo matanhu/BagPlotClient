@@ -1,7 +1,23 @@
 <ion-header>
-
   <ion-navbar color="custome-primary">
-    <ion-title>כל הפרויקטים</ion-title>
+      <ion-buttons  end>
+          <button ion-button (click)="changeSeachShow(true)" *ngIf="!isSeachShow">
+              <ion-icon name="search"></ion-icon>
+          </button>
+          <button ion-button (click)="changeSeachShow(false)" *ngIf="isSeachShow">
+              <ion-icon name="close"></ion-icon>
+          </button>
+      </ion-buttons>
+      <ion-searchbar 
+        [ngClass]="{'showSeach': isSeachShow}" 
+        [(ngModel)]="searchText" 
+        [animated]="true" 
+        [debounce]="500"
+        [type]="text"
+        (ionInput)="onSearchInput($event)"
+        placeholder="חפש...">
+    </ion-searchbar>
+    <!-- <ion-title>כל הפרויקטים</ion-title> -->
   </ion-navbar>
 
 </ion-header>
@@ -17,6 +33,7 @@
               <img [src]="project.image">
             </ion-avatar>
             <h2>{{project.project_name}}</h2>
+            <h3>{{project.customer_name}}</h3>
             <p class="date">{{project.date_created | date:'dd/MM/yyyy'}}</p>
           </ion-item>
         </button>

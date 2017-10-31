@@ -18,6 +18,7 @@ export class NewContactPage {
   private lastAnswers = new Array<string>();
   private trueFalseLast: Boolean;
   public message: string;
+  private isAddSuccess = false;
   @ViewChild('textMessage', {read: ElementRef}) textMessageElm: ElementRef;
 
   private autoScroller: MutationObserver;
@@ -38,6 +39,13 @@ export class NewContactPage {
 
   ngOnDestroy() {
     this.autoScroller.disconnect();
+
+    let newContact = {
+      method: 'addNewContact',
+      isSuccess: this.isAddSuccess,
+      contact: this.contant
+    }
+    this.navParams.get('resolve')(newContact);
   }
 
   insertMessageToList(message, ownership) {
@@ -181,6 +189,7 @@ export class NewContactPage {
         if(res.isSuccess) {
           this.insertMessageToList(ConstNewContactMessages.thankYou, 'other');
           this.stepNumber++;
+          this.isAddSuccess = true;
         }
       });
   }

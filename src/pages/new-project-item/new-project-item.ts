@@ -19,6 +19,7 @@ export class NewProjectItemPage implements OnInit, OnDestroy {
   private lastAnswers = new Array<string>();
   private trueFalseLast: Boolean;
   public message: string;
+  private isAddSuccess = false;
   @ViewChild('textMessage', {read: ElementRef}) textMessageElm: ElementRef;
 
   private autoScroller: MutationObserver;
@@ -41,6 +42,13 @@ export class NewProjectItemPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.autoScroller.disconnect();
+
+    let newProjectItem = {
+      method: 'addNewProjectItem',
+      isSuccess: this.isAddSuccess,
+      itemProject: this.itemProject
+    }
+    this.navParams.get('resolve')(newProjectItem);
   }
 
   insertMessageToList(message, ownership) {
@@ -141,8 +149,10 @@ export class NewProjectItemPage implements OnInit, OnDestroy {
       (res) => {
         if(res.isSuccess) {
           this.itemProject.id = res.id;
+          this.itemProject.date_created = res.date_created;
           this.insertMessageToList(ConstNewItemMessages.insertDescription, 'other');
           this.stepNumber++;
+          this.isAddSuccess = true;
         }
       }
     );
