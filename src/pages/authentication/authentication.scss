@@ -1,0 +1,93 @@
+page-authentication {
+
+    @font-face {
+        font-family: Sacramento-Regular;
+        src: url('../assets/fonts/Sacramento-Regular') format('woff2');
+    }
+        .scroll-content {
+            background-position: top center;
+            background-image: url(../assets/images/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-top: 4em;
+        }
+
+        .scroll-content::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to top, #000, #fff);
+            opacity: .6; 
+        }
+    
+    
+        ion-card-content {
+            color:#fff!important;
+            padding: 1em 0em!important;
+        }
+
+        ion-row {
+            margin: 1em 0;
+        }
+
+        ion-col {
+            padding: 0;
+        }
+
+        .facebook {
+            background: #2a4886;
+            padding: 0;
+            color:#fff!important;
+        }
+
+        .google {
+            background: #dd4c39;
+            color:#fff!important;
+        }
+    
+        .header-container {
+            position: relative;
+        }
+    
+        .header {
+            font-family: Sacramento-Regular;
+            text-align: center;
+            font-weight: bold;
+            font-size: 5em;
+            text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+            text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+        }
+    
+        button {
+            background-color: rgba(255,255,255,0)!important;
+            // color: #000!important;
+            box-shadow: none!important;
+            font-weight: bold!important;
+        }
+
+        .signin, .signup {
+            border: 1px solid #fff;
+            color: #fff;
+        }
+    
+        .card-container {
+            position: relative;
+            // top: 50%;
+            // transform: translateY(-100%);
+        }
+    
+        ion-card.card {
+            // background: rgba(255,255,255,0.8);
+            // background: rgba(46, 62, 80, 1);
+            background: transparent;
+            box-shadow: none;
+            border-radius: 5px;
+        }
+    
+        // button {
+        //     color: #000!important;
+        // }
+}

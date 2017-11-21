@@ -40,8 +40,16 @@ export class ProjectPage {
           this.project = res;
         }
         loading.dismiss();
-      }
-    )
+      }, (err) => {
+        loading.dismiss();
+        const toast = this.toastCtrl.create({
+          duration: 3000,
+          position: 'bottom',
+          cssClass: 'custom-toast-message',
+          message: 'אנא בדוק את חיבור האינטרנט'
+        });
+        toast.present();
+      });
   }
 
   ionViewDidLoad() {

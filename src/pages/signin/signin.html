@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>התחבר</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="header-container">
+    <div class="logo">Bag Plot</div>
+  </div>
+  <div class="card-container">
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="email" type="email" [(ngModel)]="signinModel.email">
+              <label for="email" [ngClass]="{'floating':signinModel.email}">כתובת דוא"ל:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="password" type="password" [(ngModel)]="signinModel.password">
+              <label for="password" [ngClass]="{'floating':signinModel.password}">סיסמא:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button clear ion-button full (click)="onSignin()" class="signin">התחבר</button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

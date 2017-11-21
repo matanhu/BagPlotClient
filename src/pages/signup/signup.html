@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>הרשמה</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="header-container">
+    <div class="logo">Bag Plot</div>
+  </div>
+  <div class="card-container">
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="firstName" type="text" [(ngModel)]="signupModel.firstName">
+              <label for="firstName" [ngClass]="{'floating':signupModel.firstName}">שם פרטי:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="lastName" type="text" [(ngModel)]="signupModel.lastName">
+              <label for="lastName" [ngClass]="{'floating':signupModel.lastName}">שם משפחה:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="cellular" type="text" [(ngModel)]="signupModel.cellular">
+              <label for="cellular" [ngClass]="{'floating':signupModel.cellular}">מספר סלולארי:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="email" type="email" [(ngModel)]="signupModel.email">
+              <label for="email" [ngClass]="{'floating':signupModel.email}">כתובת דוא"ל:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="password" type="password" [(ngModel)]="signupModel.password">
+              <label for="password" [ngClass]="{'floating':signupModel.password}">סיסמא:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>
+              <input id="passwordAgain" type="password" [(ngModel)]="signupModel.passwordAgain">
+              <label for="passwordAgain" [ngClass]="{'floating':signupModel.passwordAgain}">סיסמא:</label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button clear ion-button full (click)="onSignup()" class="signin">התחבר</button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

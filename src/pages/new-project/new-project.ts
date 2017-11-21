@@ -184,15 +184,18 @@ export class NewProjectPage implements OnInit, OnDestroy{
         this.createContactLastName();
         break
       case 7:
-        this.createContactPhoneOffice();
+        this.addContactPosition();
         break
       case 8:
-        this.createContactFax();
+        this.createContactPhoneOffice();
         break
       case 9:
-        this.createContactCellular();
+        this.createContactFax();
         break
       case 10:
+        this.createContactCellular();
+        break
+      case 11:
         this.createContactEmail();
         break
       case 20:
@@ -335,9 +338,16 @@ export class NewProjectPage implements OnInit, OnDestroy{
   }
 
   createContactLastName() {
-    this.insertMessageToList(ConstMessage.addContactPhoneOffice, 'other');
+    this.insertMessageToList(ConstMessage.addContactPosition, 'other');
     let contatLength = this.project.contacts.length;
     this.project.contacts[contatLength - 1].lastName = this.message;
+    this.stepNumber++;
+  }
+
+  addContactPosition() {
+    this.insertMessageToList(ConstMessage.addContactPhoneOffice, 'other');
+    let contatLength = this.project.contacts.length;
+    this.project.contacts[contatLength - 1].position = this.message;
     this.stepNumber++;
   }
 

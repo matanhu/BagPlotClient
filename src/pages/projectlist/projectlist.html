@@ -30,7 +30,7 @@
         <button class="card-header-btn" ion-button full [clear]="true" (click)="onProjectClick(project)">
           <ion-item class="card-header-btn-content">
             <ion-avatar item-start>
-              <img [src]="project.image">
+              <img [src]="project.image" *ngIf="project.image">
             </ion-avatar>
             <h2>{{project.project_name}}</h2>
             <h3>{{project.customer_name}}</h3>

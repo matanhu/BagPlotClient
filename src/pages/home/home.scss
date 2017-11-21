@@ -21,8 +21,12 @@ page-home {
         padding: 0;
     }
 
-    .item:first-child {
+    .item {
         border-bottom: 1px solid rgba(100,100,100,1);
+    }
+
+    .item:last-child {
+        border-bottom: none; 
     }
 
     .item-inner {
@@ -88,7 +92,7 @@ page-home {
 
     ion-card.card {
         // background: rgba(255,255,255,0.8);
-        background: rgba(46, 62, 80, .8);
+        background: rgba(46, 62, 80, 1);
         box-shadow: 5px 5px 5px #888888;
         border-radius: 5px;
     }

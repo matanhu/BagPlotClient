@@ -15,11 +15,17 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
+            <ion-avatar item-end>
+              <div class="numberCircle">{{countProjects}}</div>
+            </ion-avatar>
+            <button class="home-btns" ion-button full (click)="onAllProjects()">כל הפרויקטים</button>
+          </ion-item>
+          <ion-item>
               <ion-avatar item-end>
                 <div class="numberCircle">{{countProjects}}</div>
               </ion-avatar>
-              <button class="home-btns" ion-button full (click)="onAllProjects()">כל הפרויקטים</button>
-          </ion-item>
+              <button class="home-btns" ion-button full (click)="onAllProjects()">כל הלקוחות</button>
+            </ion-item>
           <ion-item>
             <ion-avatar item-end>
               <!-- <div class="numberCircle">30</div> -->

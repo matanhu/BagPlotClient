@@ -65,15 +65,17 @@ page-project {
     }
 
     .budget {
-        background: color($colors, custome-primary);
+        background: #2e3e50;
         line-height: .5em;
         text-align: center;
         padding: 20px;
-        width: 4em;
+        width: 6em;
+        color: #fff;
         height: 1em;
         border-radius: 25px;
         position: absolute;
         left: 50%;
+        -webkit-transform: translate(-50%, 15%);
         transform: translate(-50%, 15%);
     }
 

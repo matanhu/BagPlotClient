@@ -133,15 +133,18 @@ export class NewContactPage {
         this.addLastName();
         break
       case 2:
-        this.addPhoneOffice();
+        this.addPosition();
         break
       case 3:
-        this.addFax();
+        this.addPhoneOffice();
         break
       case 4:
-        this.addCellular();
+        this.addFax();
         break
       case 5:
+        this.addCellular();
+        break
+      case 6:
         this.addEmail();
         break
     }
@@ -160,8 +163,14 @@ export class NewContactPage {
 
   addLastName() {
     this.contant.setLastName(this.message);
+    this.insertMessageToList(ConstNewContactMessages.addContactPosition, 'other');
     this.stepNumber++;
+  }
+
+  addPosition() {
+    this.contant.setPosition(this.message);
     this.insertMessageToList(ConstNewContactMessages.insertPhoneOffice, 'other');
+    this.stepNumber++;
   }
 
   addPhoneOffice() {

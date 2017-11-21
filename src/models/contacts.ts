@@ -2,6 +2,7 @@ export class Contact {
     constructor(
         public firstName?: string, 
         public lastName?: string, 
+        public position?: string,
         public phoneOffice?: string, 
         public faxNumber?: string, 
         public cellular?: string, 
@@ -16,6 +17,10 @@ export class Contact {
 
     setLastName(lastName: string) {
         this.lastName = lastName;
+    }
+
+    setPosition(position: string) {
+        this.position = position;
     }
 
     setPhoneOffice(phoneOffice: string) {

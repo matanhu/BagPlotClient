@@ -32,7 +32,7 @@ page-project-item {
 
     .cover-container {
         position: relative;
-        min-height: 5em;
+        min-height: 8.6em;
     }
 
     .conver-image-container img {
@@ -51,6 +51,42 @@ page-project-item {
         direction: rtl;
         font-weight: bold;
         color: #fff;
+    }
+
+    .grid {
+        padding: 5px 0 1em 0;
+        margin: 0 0 1em 0;
+    }
+
+    .budget-container {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+    }
+
+    .budget {
+        background: #2e3e50;
+        line-height: .5em;
+        text-align: center;
+        padding: 20px;
+        width: 6em;
+        color: #fff;
+        height: 1em;
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translate(-50%, 15%);
+        transform: translate(-50%, 15%);
+    }
+
+    .budget.delete {
+        color: color($colors, danger);
+    }
+
+    .budget ion-icon {
+        font-size: 1.5em;
+        font-weight: bold;
+        line-height: 0em;
     }
 
     .projectItem-name {

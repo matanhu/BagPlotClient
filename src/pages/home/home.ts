@@ -2,7 +2,7 @@ import { ProjectProvider } from '../../providers/project/project';
 import { NewProjectPage } from '../new-project/new-project';
 import { ProjectlistPage } from '../projectlist/projectlist';
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { LoadingController, NavController, ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -15,6 +15,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,
     private projectProvider: ProjectProvider) {
   }
 
@@ -30,6 +31,15 @@ export class HomePage {
           this.countProjects = res.countProjects;
         }
         loading.dismiss();
+      }, (err) => {
+        loading.dismiss();
+        const toast = this.toastCtrl.create({
+          duration: 3000,
+          position: 'bottom',
+          cssClass: 'custom-toast-message',
+          message: 'אנא בדוק את חיבור האינטרנט'
+        });
+        toast.present();
       });
   }
 

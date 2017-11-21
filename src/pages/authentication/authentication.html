@@ -1,0 +1,44 @@
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>authentication</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content padding>
+  <div class="header-container">
+    <div class="header">Bag Plot</div>
+  </div>
+  <div class="card-container">
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-12 class="facebook">
+            <button icon-start ion-button full (click)="onAllProjects()">
+              <ion-icon name="logo-facebook"></ion-icon>
+              Facebook
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="google">
+            <button icon-start ion-button full (click)="onAllProjects()">
+                <ion-icon name="logo-googleplus"></ion-icon>
+                Google
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            <button clear ion-button full (click)="onSignin()" class="signin">התחבר</button>
+          </ion-col>
+          <ion-col col-6>
+            <button clear ion-button full (click)="onSignup()" class="signup">הרשם</button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

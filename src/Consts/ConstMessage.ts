@@ -14,6 +14,7 @@ export const ConstMessage = {
     isAddAdditionalContact: `<div>האם תרצה להוסיף איש קשר נוסף לפרויקט?</div>`,
     addContactFirstName: `<div>אנא הזן שם פרטי של איש הקשר.</div>`,
     addContactLastName: `<div>אנא הזן שם משפחה של איש הקשר.</div>`,
+    addContactPosition: `<div>אנא הזן תפקיד איש הקשר.</div>`,
     addContactPhoneOffice: `<div>אנא הזן את מספר הטלפון במשרד של איש הקשר.</div>`,
     addContactFaxNumber:  `<div>אנא הזן את מספר הפקס של איש הקשר.</div>`,
     addContactCellular: `<div>אנא הזן את מספר הסלולארי של איש הקשר.</div>`,
@@ -34,6 +35,7 @@ export const ConstNewContactMessages = {
         <div>הגעת לעמוד הוספת איש קשר חדש לפרויקט</div>
         <div>אנא הזן שם פרטי</div>`,
     addContactLastName: `<div>אנא הזן שם משפחה של איש הקשר.</div>`,
+    addContactPosition: `<div>אנא הזן תפקיד איש הקשר.</div>`,
     insertPhoneOffice: `<div>אנא הזן את מספר הטלפון במשרד של איש הקשר.</div>`,
     insertFaxNumber: `<div>אנא הזן את מספר הפקס של איש הקשר.</div>`,
     insertCellular: `<div>אנא הזן את מספר הסלולארי של איש הקשר.</div>`,

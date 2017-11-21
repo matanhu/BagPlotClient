@@ -26,6 +26,10 @@ import { ProjectItemPage } from '../pages/project-item/project-item';
 import { ProjectPage } from '../pages/project/project';
 import { ProjectItemProvider } from '../providers/project-item/project-item';
 import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-item';
+import { AuthenticationPage } from '../pages/authentication/authentication';
+import { SigninPage } from '../pages/signin/signin';
+import { SignupPage } from '../pages/signup/signup';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     NewProjectItemPage,
     NewContactPage,
     ContactPage,
-    EditProjectPage
+    EditProjectPage,
+    AuthenticationPage,
+    SigninPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,10 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     NewProjectItemPage,
     NewContactPage,
     ContactPage,
-    EditProjectPage
+    EditProjectPage,
+    AuthenticationPage,
+    SigninPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
@@ -71,7 +81,8 @@ import { EditProjectItemPage } from '../pages/edit-project-item/edit-project-ite
     Camera,
     Keyboard,
     FirebaseProvider,
-    ProjectItemProvider
+    ProjectItemProvider,
+    AuthenticationProvider
   ]
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
 import { ProjectItemProvider } from '../../providers/project-item/project-item';
 import { ItemProject } from '../../models/itemProject';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,6 +15,7 @@ export class ProjectItemPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
     private projectItemProvider: ProjectItemProvider) {
       this.projectItem = this.navParams.get('projectItem');
       const loading = this.loadingCtrl.create({
@@ -26,6 +27,15 @@ export class ProjectItemPage {
         (projectItemRes) => {
           this.projectItem = projectItemRes;
           loading.dismiss();
+        }, (err) => {
+          loading.dismiss();
+          const toast = this.toastCtrl.create({
+            duration: 3000,
+            position: 'bottom',
+            cssClass: 'custom-toast-message',
+            message: 'אנא בדוק את חיבור האינטרנט'
+          });
+          toast.present();
         });
   }
 
